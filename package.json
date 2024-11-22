@@ -1,0 +1,38 @@
+{
+  "name": "gestion-de-tareas-api",
+  "version": "1.0.0",
+  "description": "Una API que permita a los usuarios crear, actualizar y eliminar tareas. Incluye",
+  "main": " priorización de tareas, fechas de vencimiento, y etiquetas.",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "node --watch ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fvaldez29/API-de-Gesti-n-de-Tareas-To-Do-List-Escalable.git"
+  },
+  "author": "Franklyn Valdez Mateo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fvaldez29/API-de-Gesti-n-de-Tareas-To-Do-List-Escalable/issues"
+  },
+  "homepage": "https://github.com/fvaldez29/API-de-Gesti-n-de-Tareas-To-Do-List-Escalable#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.2",
+    "morgan": "^1.10.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "standard": "^17.1.2"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  }
+}
