@@ -21,9 +21,12 @@
   },
   "homepage": "https://github.com/fvaldez29/API-de-Gesti-n-de-Tareas-To-Do-List-Escalable#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.11.0",
     "mongoose": "^8.8.2",
     "morgan": "^1.10.0",
@@ -31,8 +34,5 @@
   },
   "devDependencies": {
     "standard": "^17.1.2"
-  },
-  "eslintConfig": {
-    "extends": "standard"
   }
 }
