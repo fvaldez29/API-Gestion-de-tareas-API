@@ -78,3 +78,7 @@ const userValidation = z.object({
 export const validateUser = (input) => {
   return userValidation.safeParse(input)
 }
+
+export const validaPartialUser = (input) => {
+  return userValidation.partial().safeParse(input)
+}

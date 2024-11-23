@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 
-
+//App routes
 app.use('/', authRoute)
 
 
