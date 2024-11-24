@@ -3,6 +3,9 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
 import authRoute from './src/routes/authRouter.js'
+import userRoute from './src/routes/userRouter.js'
+
+import adminRoute from './src/routes/adminRouter.js'
 
 dotenv.config()
 
@@ -20,6 +23,10 @@ app.use(morgan('dev'))
 
 //App routes
 app.use('/', authRoute)
+app.use('/', userRoute)
+
+// PROTECTED ROUTES
+app.use('/admin', adminRoute)
 
 
 const port = process.env.PORT
