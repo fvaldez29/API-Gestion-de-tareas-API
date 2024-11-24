@@ -1,25 +1,24 @@
 import { User } from "../models/userModel.js"
-import { validaPartialUser, validateUser } from "../models/userValidation.js"
 
-
-// GET USER
-export const showUserController = async (req, res) => {
+// GET USERS LIST 
+export const showUsersListController = async (req, res) => {
     try {
-        const user = await User.findById(req.body.id)
+        const showUsersList = await User.find({})
 
-        if (!user) return res.status(404).json({ message: 'User not found' })
+        if (!showUsersList) {
+            return res.status(404).json({ message: 'I cannot show users list' })
+        }
 
-        // Hidden Password
-        user.password = undefined
-
-        res.status(200).send(user)
+        res.status(200).json({
+            totalUsers: showUsersList.length,
+            showUsersList
+        })
 
     } catch (error) {
-        console.error('Internal error in show user ', error)
-        res.status(500).json({ message: 'Error in show user info' })
+        console.error(error)
+        res.status(500).json({ message: 'Error in showing users lists' })
     }
 }
-
 
 
 //? UPDATE USER INFO
@@ -53,5 +52,27 @@ export const updateUserController = async (req, res) => {
     } catch (error) {
         console.error('Update user info show an error ', error)
         res.status(500).json({ message: 'Internal Server Error ' })
+    }
+}
+
+export const deleteUsersController = async (req, res) => {
+    try {
+
+        const { id } = req.params
+
+        const deleteUser = await User.findByIdAndDelete(id)
+
+        if(!deleteUser){
+            return res.status(404).json({ msg: 'User not found' })
+        }
+
+        return res.status(200).json({ success: true, message: 'User account has been deleted' })
+
+
+    } catch (error) {
+
+        console.log(error)
+
+        res.status(500).json({ mgs: 'Error in delete user ' })
     }
 }

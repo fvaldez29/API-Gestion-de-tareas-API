@@ -8,8 +8,6 @@ const userRoute = express.Router()
 //? GET USER
 userRoute.get('/user', authMiddleWare, showUserController)
 
-//? GET ALL USERS
-
 // ? UPDATE USER
 userRoute.put('/user/update', authMiddleWare, updateUserController)
 

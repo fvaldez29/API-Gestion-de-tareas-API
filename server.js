@@ -11,6 +11,9 @@ dotenv.config()
 
 const app = express()
 
+// disable x-powered-by
+app.disable('x-powered-by')
+
 //connect to database
 mongoose.connect(process.env.MONGO_DATABASE_URL)
     .then(() => console.log('database is running'))
@@ -21,12 +24,14 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 
+
 //App routes
 app.use('/', authRoute)
 app.use('/', userRoute)
 
 // PROTECTED ROUTES
 app.use('/admin', adminRoute)
+
 
 
 const port = process.env.PORT
