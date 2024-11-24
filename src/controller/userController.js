@@ -1,6 +1,6 @@
 import { User } from "../models/userModel.js"
 import { validaPartialUser, validateUser } from "../models/userValidation.js"
-
+import bcrypt from 'bcrypt'
 
 // GET USER
 export const showUserController = async (req, res) => {
@@ -37,12 +37,12 @@ export const updateUserController = async (req, res) => {
 
         // Buscar y actualizar al usuario
         const updateUser = await User.findByIdAndUpdate(
-            id, 
+            id,
             validation.data,
             { new: true, runValidators: true } //* Para devolver el usuario y aplicar validacion de moongose
         )
 
-        if(!updateUser){
+        if (!updateUser) {
             return res.status(404).json({ message: 'User not found' })
         }
 
@@ -53,5 +53,39 @@ export const updateUserController = async (req, res) => {
     } catch (error) {
         console.error('Update user info show an error ', error)
         res.status(500).json({ message: 'Internal Server Error ' })
+    }
+}
+
+//? RESET PASSWORD 
+export const resetPasswordController = async (req, res) => {
+    try {
+        const { email, newPassword } = req.body
+
+        if (!email || !newPassword) {
+            return res.status(404).json(
+                { 
+                    msg: 'Please check your email and password'
+                 })
+        }
+
+        const user = await User.findOne({ email })
+
+        if (!user) {
+            return res.status(404).json({ message: 'Invalid credentials. Please check your input.' })
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10)
+
+        user.password = hashedPassword
+
+        await user.save()
+
+        res.status(200).json({
+            message: 'User password reset Successfully '
+        })
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ msg: 'Internal error when reset password' })
     }
 }

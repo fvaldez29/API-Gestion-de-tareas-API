@@ -1,6 +1,6 @@
 import express from 'express'
 import authMiddleWare from '../middleware/authMiddleWare.js'
-import { showUserController, updateUserController } from '../controller/userController.js'
+import { resetPasswordController, showUserController, updateUserController } from '../controller/userController.js'
 
 
 const userRoute = express.Router()
@@ -10,5 +10,8 @@ userRoute.get('/user', authMiddleWare, showUserController)
 
 // ? UPDATE USER
 userRoute.put('/user/update', authMiddleWare, updateUserController)
+
+//? PASSWORD RESET
+userRoute.patch('/user/passwordUpdate', authMiddleWare, resetPasswordController)
 
 export default userRoute

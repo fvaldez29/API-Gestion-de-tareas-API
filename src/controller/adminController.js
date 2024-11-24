@@ -55,6 +55,8 @@ export const updateUserController = async (req, res) => {
     }
 }
 
+
+//? DELETE USER
 export const deleteUsersController = async (req, res) => {
     try {
 
