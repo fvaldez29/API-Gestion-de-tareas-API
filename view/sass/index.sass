@@ -1,4 +1,55 @@
-*
-    padding: 0
+@use 'reset'
+
+$darkBlue: #1d2f6f
+$lightPurple: #8390fa
+$red: #ba1200
+$white: #ffff
+$gray: #f0f0f0
+
+body
+    font-family: 'Poppins', sans-serif
+    background-color: $gray
     margin: 0
-    box-sizing: border-box
+    padding: 0
+
+.main
+    padding: 0
+    width: 100%
+    height: 100vh
+    background: $darkBlue
+
+    .aside-title
+        background-color: $lightPurple
+        display: flex
+        flex-flow: column nowrap
+        align-items: center
+        justify-content: center
+        height: 100vh
+        color: $white
+
+        h1
+            font-size: 5rem
+            letter-spacing: 2px
+            font-weight: bold
+            text-align: center
+            
+         
+        p
+            font-size: 1.2rem
+            letter-spacing: 2px
+            margin-top: 1rem
+
+    .form-container
+        background-color: $white
+        padding: 2rem
+        border-radius: 1rem
+        height: 50vh
+
+        label
+            font-weight: bold
+            font-size: 1rem
+        button
+            background-color: $lightPurple
+
+
+    
