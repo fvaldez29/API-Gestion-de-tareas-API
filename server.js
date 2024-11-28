@@ -10,6 +10,7 @@ import path from 'node:path';
 import authRoute from './src/routes/authRouter.js';
 import userRoute from './src/routes/userRouter.js';
 import adminRoute from './src/routes/adminRouter.js';
+import taskRoute from './src/routes/taskRoute.js';
 
 dotenv.config();
 
@@ -53,6 +54,11 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoute); // Rutas de autenticación
 app.use('/users', userRoute); // Rutas relacionadas con usuarios
 app.use('/admin', adminRoute); // Rutas protegidas para administradores
+
+// Rutas de taks
+
+app.use('/user', taskRoute)
+
 
 // Manejo de 404
 app.use((req, res) => {
