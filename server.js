@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
+import { corsMiddleWare } from './src/middleware/cors.js';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -24,11 +25,9 @@ const __dirname = path.dirname(__filename);
 // Configurar vistas
 app.set('views', path.join(__dirname, '/view'));
 // Configura express para servir archivos estáticos desde la carpeta 'view/style'
-app.use('/style', express.static(path.join(__dirname, 'view/style')));
+app.use(express.static(path.join(__dirname, '/public')));
+
 app.set('view engine', 'ejs');
-
-
-
 
 
 // Conectar a la base de datos
@@ -37,9 +36,13 @@ mongoose
   .then(() => console.log('Database is running'))
   .catch((err) => console.log('Database connection error', err));
 
+
+
+
 // Middleware
 app.use(express.json());
 app.use(morgan('dev'));
+
 
 // Ruta principal para frontend
 app.get('/', (req, res) => {
